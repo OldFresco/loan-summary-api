@@ -4,31 +4,18 @@
 ## Features
 - [x] ES6 for javascript awesomeness
 - [x] [MongoDB](https://www.mongodb.com/) w/ [Mongoose](http://mongoosejs.com/) for data layer
-- [x] Username/Email registration and authentication
 - [x] Testing via [Mocha](https://mochajs.org/) & [Chai](http://chaijs.com/)
 - [x] Test coverage via [Isparta](https://github.com/douglasduteil/isparta)
 
 ## Getting Started
 First, ensure you have node and mongo installed on your system.
 
-
 ```sh
-# clone it
-git clone git@github.com:kylealwyn/node-api-es6-boilerplate.git
-cd node-api-es6-boilerplate
-
-# Make it your own
-rm -rf .git && git init
-
 # Install dependencies
 npm install
 
 # Run it
 npm start
-
-# Try it!
-curl -H "Content-Type: application/json" -X POST -d '{"username":"jamesdean", "email": "example@gmail.com", "password":"password1"}' http://localhost:4567/users
-```
 
 ## Commands
 
@@ -48,10 +35,15 @@ curl -H "Content-Type: application/json" -X POST -d '{"username":"jamesdean", "e
   - Generates production ready application in `./build`
 
 ## Todo
-- [ ] Add OAuth Login Support (Facebook, Twitter, Google)
-- [ ] Add support for MySql or PostgreSQL (Possibly with sequelize)
-- [x] Write tests to exemplify Mongo interactions
-- [ ] Move all data retrieval logic into services to remove Mongo dependences in controllers
+- [ ] Extract HMAC stuff into it's own repo and consume as Node module - Nearly easy
+- [ ] Extract useful info form auth token and map to customer data in persistence - Middlewate probs - EASY-ish
+- [ ] Make agreement reference globally accessible to controllers (put in req object) - EASY
+- [ ] Fix customer object model - SUPER EASY
+- [ ] Data mapping in Loan summary controller - EASY
+- [ ] Tests - ... wut?
+- [ ] Make settings.js use modular Settings.json files - SUPER EASY
+- [ ] Add Datadog instrumentation-- EASY
+- [ ] Add More logging - EASY
 
 ## License
 MIT
