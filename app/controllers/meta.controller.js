@@ -1,10 +1,10 @@
 import BaseController from './base.controller';
-import Constants from '../config/constants';
+import settings from '../config/settings';
 
 class MetaController extends BaseController {
   index(req, res) {
 		res.json({
-			version : Constants.version,
+			version : settings.version,
 			health: 'ok'
 		});
 	}

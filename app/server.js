@@ -5,7 +5,6 @@ import methodOverride from 'method-override';
 import errorHandler from 'errorhandler';
 import morgan from 'morgan';
 import helmet from 'helmet';
-
 import routes from './routes';
 import settings from './config/settings';
 import './database';

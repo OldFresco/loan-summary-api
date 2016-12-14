@@ -8,16 +8,23 @@ const defaultConfig = {
     return {
       test: process.env.NODE_ENV === 'test',
       development: process.env.NODE_ENV === 'development',
-      production: process.env.NODE_ENV === 'production',
+      production: process.env.NODE_ENV === 'production'
     }
   },
-
-  apiVersion: require('../../package.json').version,
+  apiVersion: require('../../package.json').apiVersion,
   root: path.normalize(__dirname + '/../../..'),
   port: process.env.PORT || 4567,
   ip: process.env.IP || '0.0.0.0',
-  apiPrefix: '/apiVersion',
-
+  loanManagementApi: {
+    BaseUrl: process.env.loanManagementApiBaseUrl || 'url',
+    PrivateKey: process.env.loanManagementApiPrivateKey || 'private-key',
+    PublicKey: process.env.loanManagementApiPublicKey || 'public-key'
+  },
+  auth0: {
+    secret: 'secret',
+    client: 'client',
+    domain: 'https://likelyloans.eu.auth0.com/'
+  },
   /**
    * MongoDB configuration options
    */
@@ -68,4 +75,4 @@ const environmentConfigs = {
 };
 
 // Recursively merge configurations
-export default merge(defaultConfig, environmentConfigs[process.env.NODE_ENV]|| {});
+export default merge(defaultConfig, environmentConfigs[process.env.NODE_ENV] || {});

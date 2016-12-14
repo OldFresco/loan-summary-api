@@ -1,14 +1,18 @@
-import { Router } from 'express';
+import {Router} from 'express';
 import MetaController from './controllers/meta.controller';
 import LoanSummariesController from './controllers/loanSummaries.controller';
-
-import authenticate from './middleware/authenticate';
+import jwt from 'express-jwt';
 import settings from './config/settings';
 
 const routes = new Router();
 const version = settings.apiVersion;
+const jwtCheck = jwt({
+    secret: new Buffer(settings.auth0.secret, 'base64'),
+    audience: settings.auth0.client,
+    issuer: settings.auth0.domain 
+});
 
 routes.get(`${version}/`, MetaController.index);
-routes.get(`${version}/loan-summaries`, authenticate, LoanSummariesController.retrieveSummaries);
+routes.get(`${version}/loan-summaries`, jwtCheck, LoanSummariesController.retrieveSummaries);
 
 export default routes;

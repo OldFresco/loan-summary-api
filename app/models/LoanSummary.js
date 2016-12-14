@@ -13,4 +13,4 @@ const LoanSummarySchema = new Schema({
 
 const LoanSummaryModel = mongoose.model('LoanSummary', LoanSummarySchema);
 
-export default PostModel;
+export default LoanSummaryModel;

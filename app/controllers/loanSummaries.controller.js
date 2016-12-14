@@ -1,32 +1,36 @@
 import BaseController from './base.controller';
-import LoanSummary from '../models/LoanSummary';
+import settings from '../config/settings';
 import axios from 'axios';
 
 class LoanSummariesController extends BaseController {
     constructor() {
         super();
-        this.retrieveSummaries = this.retrieveSummaries.bind(this);
+        this.retrieveSummaries = this
+            .retrieveSummaries
+            .bind(this);
     }
 
     retrieveSummaries(req, res) {
-        var httpClient = axios.create({
-            baseURL: 'https://some-domain.com/api/',
+        let httpClient = axios.create({
+            baseURL: settings.loanManagementApi.BaseUrl,
             timeout: 1000,
-            headers: { 'X-Custom-Header': 'foobar' }
-        })
+            headers: {
+                'X-Custom-Header': 'foobar'
+            }
+        });
 
-        getUserAccount = () => {
-            return httpClient.get('/user/12345');
+        let getUserAccount = () => {
+            return httpClient.get('/applicaitons/12345');
         }
 
-        getPaymentSchedules = () => {
-            return httpClient.get('/user/12345/schedules');
+        let getPaymentSchedules = () => {
+            return httpClient.get('/applications/12345/schedules');
         }
 
-        httpClient.all([getUserAccount(), getPaymentSchedules()])
-            .then(httpClient.spread((user, paymentSchedule) => {
-                // Both requests are now complete 
-            }));
+        httpClient.all([getUserAccount(), getPaymentSchedules()]).then(httpClient.spread((user, paymentSchedule) => {
+            res.json({foo: user, bar: paymentSchedule});
+        }));
+
     }
 }
 
