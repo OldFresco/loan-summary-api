@@ -1,6 +1,7 @@
 import settings from '../config/settings';
 import CryptoJS from 'crypto-js';
 
+//This can be extracted as a node module and consumed in different applications as http client middleware.
 const hmacSigningHandler = (request) => {
 
     let method = request.method;

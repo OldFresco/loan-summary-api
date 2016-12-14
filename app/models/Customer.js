@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import LoanSummary from './LoanSummary';
 
 const Schema = mongoose.Schema;
 
@@ -27,15 +26,6 @@ const CustomerSchema = new Schema({
     }
   }
 }, {timestamps: true});
-
-/**
- * Customer Methods
- */
-CustomerSchema.methods = {
-  getLoanSummaries() {
-    return LoanSummary.find({_user: this._id});
-  }
-};
 
 const CustomerModel = mongoose.model('Customer', CustomerSchema);
 
