@@ -35,7 +35,7 @@ npm start
   - Generates production ready application in `./build`
 
 ## Todo
-- [ ] Extract HMAC stuff into it's own repo and consume as Node module - Nearly easy
+- [ ] Extract HMAC stuff into it\'s own repo and consume as Node module - Nearly easy
 - [ ] Extract useful info form auth token and map to customer data in persistence - Middlewate probs - EASY-ish
 - [ ] Make agreement reference globally accessible to controllers (put in req object) - EASY
 - [ ] Fix customer object model - SUPER EASY
