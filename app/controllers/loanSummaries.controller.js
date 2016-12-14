@@ -20,6 +20,7 @@ class LoanSummariesController extends BaseController {
             .bind(this);
     }
 
+    //Need schedules call to be called on the back of the application request then map responses into loan summary
     retrieveSummaries(req, res) {
         let endpoint = '/applications/1700000001';
         
