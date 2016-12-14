@@ -7,7 +7,7 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import routes from './routes';
 import settings from './config/settings';
-import './database';
+import './persistence/database';
 
 let app = express();
 
@@ -40,6 +40,8 @@ app.listen(settings.port, () => {
   console.log(`
     Port: ${settings.port}
     Env: ${app.get('env')}
+    
+    Keep on rockin' in the free world!
   `);
 });
 

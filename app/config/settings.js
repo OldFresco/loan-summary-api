@@ -16,9 +16,9 @@ const defaultConfig = {
   port: process.env.PORT || 4567,
   ip: process.env.IP || '0.0.0.0',
   loanManagementApi: {
-    BaseUrl: process.env.loanManagementApiBaseUrl || 'url',
-    PrivateKey: process.env.loanManagementApiPrivateKey || 'private-key',
-    PublicKey: process.env.loanManagementApiPublicKey || 'public-key'
+    baseUrl: process.env.loanManagementApiBaseUrl || 'url',
+    privateKey: process.env.loanManagementApiPrivateKey || 'private-key',
+    publicKey: process.env.loanManagementApiPublicKey || 'public-key'
   },
   auth0: {
     secret: 'secret',

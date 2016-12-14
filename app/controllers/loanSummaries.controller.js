@@ -1,6 +1,16 @@
+import {
+    createFetch,
+    base,
+    accept,
+    parse,
+    header,
+    method
+} from 'http-client';
 import BaseController from './base.controller';
 import settings from '../config/settings';
-import axios from 'axios';
+import hmac from '../http/hmac';
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
 
 class LoanSummariesController extends BaseController {
     constructor() {
@@ -11,25 +21,26 @@ class LoanSummariesController extends BaseController {
     }
 
     retrieveSummaries(req, res) {
-        let httpClient = axios.create({
-            baseURL: settings.loanManagementApi.BaseUrl,
-            timeout: 1000,
-            headers: {
-                'X-Custom-Header': 'foobar'
-            }
+        let endpoint = '/applications/1700000001';
+        
+        let httpRequest = {
+            url: settings.loanManagementApi.baseUrl + endpoint,
+            method: 'GET'
+        };
+
+        let headers = hmac(httpRequest);
+
+        const fetch = createFetch(
+            base(settings.loanManagementApi.baseUrl), 
+            accept('application/json'), 
+            parse('json'), 
+            header('Date', headers.date), 
+            header('Authorization', headers.HMACHash), 
+            method(httpRequest.method));
+
+        fetch(endpoint).then(response => {
+            res.json({account: response});
         });
-
-        let getUserAccount = () => {
-            return httpClient.get('/applicaitons/12345');
-        }
-
-        let getPaymentSchedules = () => {
-            return httpClient.get('/applications/12345/schedules');
-        }
-
-        httpClient.all([getUserAccount(), getPaymentSchedules()]).then(httpClient.spread((user, paymentSchedule) => {
-            res.json({foo: user, bar: paymentSchedule});
-        }));
 
     }
 }

@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import settings from './config/settings';
+import settings from '../config/settings';
 
 // Use native promises
 mongoose.Promise = global.Promise;
